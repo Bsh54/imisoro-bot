@@ -1,0 +1,35 @@
+{"id":"seed:imisoro:001","text":"Imisoro AI is a Rwandan product that helps VAT-registered businesses and accountants prepare for VAT filing in the official RRA eTax portal.","source":"deck+site"}
+{"id":"seed:imisoro:002","text":"Imisoro is built specifically for Rwanda's VAT-registered businesses and for the RRA's EBM (Electronic Billing Machine) and e-Tax environment.","source":"deck+site"}
+{"id":"seed:imisoro:003","text":"Founder and Product Lead of Imisoro AI: Emily Kirabo, based in Kigali, Rwanda.","source":"deck"}
+{"id":"seed:imisoro:004","text":"Official Imisoro website: https://imisoroai.nutekh.com/","source":"site"}
+{"id":"seed:imisoro:005","text":"Supported languages in Imisoro: English (the product default), Kinyarwanda, and Français. Guidance and the user interface are available in all three.","source":"deck+site"}
+{"id":"seed:imisoro:010","text":"Positioning: Imisoro is a review workspace, not a black box. It helps organize the work — capture, verify, explain, and hand off — but does NOT replace a professional accountant and does NOT submit government filings.","source":"site"}
+{"id":"seed:imisoro:011","text":"Imisoro does NOT file returns for the user. It prepares evidence and summaries; the user or their accountant makes the filing decisions, and the return itself is completed and submitted in the official RRA eTax portal.","source":"site+deck"}
+{"id":"seed:imisoro:012","text":"Human review stays in control: Imisoro's AI extracts fields and highlights uncertainty, and the user approves every classification.","source":"site"}
+{"id":"seed:imisoro:013","text":"Original invoices are retained in Imisoro. Source documents stay attached to the extracted records so they remain reviewable and exportable.","source":"site"}
+{"id":"seed:imisoro:014","text":"Imisoro keeps an audit trail. Every result stays reviewable, exportable, and connected to its original source.","source":"site"}
+{"id":"seed:imisoro:015","text":"Trust basics of Imisoro: Original files retained · Human approval · Audit trail.","source":"site"}
+{"id":"seed:imisoro:020","text":"Imisoro AI enhances and speeds up human judgment — it does not replace professional accountants or official government portals.","source":"deck"}
+{"id":"seed:imisoro:030","text":"Imisoro three-step workflow — Step 1 (Capture): upload every document (PDF, photo, or EBM receipt) before it disappears into a WhatsApp thread or a drawer.","source":"site"}
+{"id":"seed:imisoro:031","text":"Imisoro three-step workflow — Step 2 (Review): the AI extracts the fields, highlights uncertainty, and keeps the source document attached. The user approves each classification.","source":"site"}
+{"id":"seed:imisoro:032","text":"Imisoro three-step workflow — Step 3 (Prepare for eTax): build a period-based review pack, then complete and submit the return in the official RRA eTax portal.","source":"site"}
+{"id":"seed:imisoro:040","text":"For business owners: Imisoro lets you know which invoices need attention before they become a filing problem.","source":"site"}
+{"id":"seed:imisoro:041","text":"For accountants: Imisoro delivers structured, reviewable evidence instead of a folder of unclear photos sent by the client.","source":"site"}
+{"id":"seed:imisoro:042","text":"For real-world work: Imisoro keeps the human decision in the loop and explains every classification.","source":"site"}
+{"id":"seed:imisoro:050","text":"The monthly close with Imisoro revolves around four moves: capture, verify, explain, and hand off — so the business and its accountant work from the same source of truth.","source":"site"}
+{"id":"seed:imisoro:051","text":"Imisoro helps organize EBM evidence, review purchase VAT, reconcile sales records, and build a period-based filing pack.","source":"site"}
+{"id":"seed:imisoro:052","text":"The focus of the current Imisoro version is monthly unsupported-expense schedule assembly for registered, VAT-paying Kigali SMEs using the RRA EBM and e-Tax systems.","source":"deck"}
+{"id":"seed:imisoro:053","text":"Imisoro's classification engine tags expenses as supported vs unsupported following RRA rules. Each classification is reviewable and must be approved by the user before it enters the filing pack.","source":"deck"}
+{"id":"seed:imisoro:060","text":"Target sectors for Imisoro: high-volume transaction sectors — retail, trade, professional services, and hospitality.","source":"deck"}
+{"id":"seed:imisoro:061","text":"Primary users of Imisoro: SME business owners, in-house accountants, and tax operators.","source":"deck"}
+{"id":"seed:imisoro:070","text":"MVP validation result: with active Kigali SMEs, tax preparation time was reduced by more than 75% — bringing tax-prep tasks from several hours to under 60 minutes.","source":"deck"}
+{"id":"seed:imisoro:071","text":"Qualitative MVP feedback: large increase in categorization confidence; multilingual explanations (Kinyarwanda, English, French) were praised as a stand-out differentiator.","source":"deck"}
+{"id":"seed:imisoro:080","text":"Structured pilot plan: 4-month cohort with 20-30 VAT-registered Kigali SMEs across retail, hospitality, and professional services. Month 1 = onboarding and staff training. Months 2-3 = active monthly filing use, supported by a dedicated WhatsApp and phone helpline. Month 4 = evaluation and preparation for broader rollout.","source":"deck"}
+{"id":"seed:imisoro:081","text":"Six key metrics measured in the Imisoro pilot: Time Efficiency (hours saved per declaration), Classification Accuracy (AI vs RRA rules), Explanation Clarity (user comprehension across languages), System Reliability (edge cases), User Confidence (trust in classifications), and Adoption & Retention (long-term monthly usage).","source":"deck"}
+{"id":"seed:imisoro:090","text":"FAQ — Does Imisoro file returns for me? No. Imisoro prepares the evidence and summaries; the user or their accountant makes the filing decisions in the RRA eTax portal.","source":"site"}
+{"id":"seed:imisoro:091","text":"FAQ — Can I keep the original invoice? Yes. Source documents stay attached to the extracted records for review and export.","source":"site"}
+{"id":"seed:imisoro:092","text":"FAQ — Who is Imisoro for? Rwanda SMEs, finance teams, and accounting firms.","source":"site"}
+{"id":"seed:imisoro:100","text":"Imisoro brand promise: Make every invoice count.","source":"site"}
+{"id":"seed:imisoro:101","text":"Imisoro brand promise: From scattered receipts to a clear evidence trail.","source":"site"}
+{"id":"seed:imisoro:102","text":"Imisoro brand promise: Less chasing. More confidence at month-end.","source":"site"}
+{"id":"seed:imisoro:110","text":"To get started with Imisoro, a user creates a workspace from the website, uploads their first invoice, and reviews what needs their attention. The CTA on the site is 'Create workspace'.","source":"site"}

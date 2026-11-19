@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connect Imisoro AI to WhatsApp</title>
+  <style>
+    :root {
+      --dark: #0B2E2E;
+      --teal: #0E7C7B;
+      --orange: #E8A33D;
+      --cream: #F4F7F6;
+      --ink: #0B2E2E;
+      --mute: #4A5A59;
+      --line: rgba(255,255,255,0.12);
+      --card: #FFFFFF;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--dark);
+      color: #FFF;
+      -webkit-font-smoothing: antialiased;
+    }
+    .orange-bar { height: 4px; background: var(--orange); }
+    .page {
+      min-height: calc(100vh - 4px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 20px 48px;
+    }
+    header { text-align: center; margin-bottom: 24px; }
+    .brand {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .brand .brand-accent { color: var(--orange); }
+    .tagline {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #BFD8D6;
+      letter-spacing: 0.4px;
+    }
+    main {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      width: 100%;
+      max-width: 940px;
+      margin-top: 8px;
+    }
+    @media (min-width: 820px) {
+      main { grid-template-columns: 1fr 1fr; align-items: start; }
+    }
+    .card {
+      background: var(--card);
+      color: var(--ink);
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      line-height: 1.25;
+      color: var(--dark);
+    }
+    .lead {
+      margin: 0 0 20px;
+      color: var(--mute);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .qr-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+      padding: 14px;
+      background: #FFF;
+      border: 1px solid #E6EDEC;
+      border-radius: 12px;
+      position: relative;
+    }
+    #qr { width: 288px; height: 288px; display: none; }
+    .qr-skeleton {
+      width: 288px; height: 288px;
+      background: linear-gradient(135deg, #F4F7F6 25%, #E6EDEC 50%, #F4F7F6 75%);
+      background-size: 300% 300%;
+      animation: shimmer 2s linear infinite;
+      border-radius: 8px;
+    }
+    @keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+    .status {
+      margin-top: 18px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #F4F7F6;
+      color: var(--mute);
+    }
+    .status .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #C7D3D2;
+    }
+    .status.awaiting .dot { background: var(--orange); animation: pulse 1.4s ease-in-out infinite; }
+    .status.connected { background: #E6F5EF; color: #0E6B3E; }
+    .status.connected .dot { background: #1AA362; }
+    .status.error { background: #FDECEC; color: #B22A1D; }
+    .status.error .dot { background: #D33E2F; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+    .steps li {
+      counter-increment: s;
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px 0;
+      border-top: 1px solid #ECF1F0;
+    }
+    .steps li:first-child { border-top: none; }
+    .steps li::before {
+      content: counter(s);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: #FFF;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .steps li:nth-child(2n)::before { background: var(--orange); }
+    .step-title { font-weight: 600; color: var(--dark); margin: 0 0 4px; font-size: 15px; }
+    .step-body { margin: 0; color: var(--mute); font-size: 14px; line-height: 1.5; }
+    .notice {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: #F4F7F6;
+      border-left: 3px solid var(--teal);
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--mute);
+      line-height: 1.5;
+    }
+    .connected-panel { display: none; }
+    .connected-panel.show { display: block; }
+    .phone {
+      font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+      font-size: 18px;
+      color: var(--dark);
+      font-weight: 600;
+    }
+    .btn-logout {
+      margin-top: 18px;
+      padding: 10px 18px;
+      background: transparent;
+      color: var(--mute);
+      border: 1px solid #D5DEDC;
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .btn-logout:hover { border-color: var(--teal); color: var(--teal); }
+    footer {
+      margin-top: 32px;
+      font-size: 12px;
+      color: #9FB8B6;
+      text-align: center;
+    }
+    footer a { color: #BFD8D6; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="orange-bar"></div>
+  <div class="page">
+    <header>
+      <div class="brand">Imisoro <span class="brand-accent">AI</span></div>
+      <div class="tagline">Connect your WhatsApp assistant</div>
+    </header>
+
+    <main>
+      <section class="card" aria-labelledby="qr-title">
+        <h1 id="qr-title">Scan to connect</h1>
+        <p class="lead">
+          Open WhatsApp on the phone you want to use as the assistant line, then scan the code below. Your session stays private to this device.
+        </p>
+
+        <div class="qr-wrap">
+          <div class="qr-skeleton" id="qr-skeleton"></div>
+          <img id="qr" alt="QR code to link WhatsApp" />
+        </div>
+
+        <div id="status" class="status">
+          <span class="dot"></span>
+          <span id="status-text">Preparing session...</span>
+        </div>
+
+        <div class="connected-panel" id="connected-panel">
+          <p class="lead" style="margin-top:14px;">
+            The assistant is now linked to <span id="phone" class="phone">your number</span>. You can close this page. The bot will answer DMs on this WhatsApp line.
+          </p>
+          <button class="btn-logout" id="logout">Unlink this device</button>
+        </div>
+
+        <p class="notice">
+          Imisoro is a review workspace. It never files returns on your behalf: the final submission always happens in the official RRA eTax portal.
+        </p>
+      </section>
+
+      <section class="card" aria-labelledby="how-title">
+        <h1 id="how-title">How to scan</h1>
+        <ol class="steps">
+          <li>
+            <div>
+              <p class="step-title">Open WhatsApp</p>
+              <p class="step-body">On the phone that will act as the Imisoro assistant line.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <p class="step-title">Go to Linked Devices</p>
+              <p class="step-body">Tap the menu, then Settings, then Linked Devices. On iPhone it is under Settings directly.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <p class="step-title">Tap Link a Device</p>
+              <p class="step-body">Point your camera at the QR code on this page.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <p class="step-title">Wait for the green state</p>
+              <p class="step-body">Once connected, the assistant is live and ready to answer DMs.</p>
+            </div>
+          </li>
+        </ol>
+
+        <p class="notice">
+          Need help? The session is stored locally on this machine only. No one else sees your QR or your messages.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      Imisoro AI assistant - review workspace for Rwanda VAT compliance - <a href="https://imisoroai.nutekh.com/" target="_blank" rel="noopener">imisoroai.nutekh.com</a>
+    </footer>
+  </div>
+
+  <script>
+    const qrImg = document.getElementById('qr');
+    const qrSkel = document.getElementById('qr-skeleton');
+    const statusEl = document.getElementById('status');
+    const statusText = document.getElementById('status-text');
+    const connectedPanel = document.getElementById('connected-panel');
+    const phoneEl = document.getElementById('phone');
+    const logoutBtn = document.getElementById('logout');
+
+    const LABELS = {
+      'starting': 'Preparing session...',
+      'awaiting-scan': 'Waiting for you to scan the code',
+      'connected': 'Connected',
+      'disconnected': 'Disconnected, reconnecting...',
+      'logged-out': 'Logged out, generating a fresh code...',
+      'error': 'Something went wrong',
+    };
+
+    function refreshQr() {
+      qrImg.src = '/qr.png?ts=' + Date.now();
+      qrImg.onload = () => { qrImg.style.display = 'block'; qrSkel.style.display = 'none'; };
+      qrImg.onerror = () => { qrImg.style.display = 'none'; qrSkel.style.display = 'block'; };
+    }
+
+    function apply(state) {
+      statusText.textContent = state.error ? state.error : (LABELS[state.status] || state.status);
+      statusEl.classList.remove('awaiting', 'connected', 'error');
+      if (state.status === 'awaiting-scan' || state.status === 'starting') statusEl.classList.add('awaiting');
+      if (state.status === 'connected') statusEl.classList.add('connected');
+      if (state.status === 'error' || state.status === 'logged-out') statusEl.classList.add('error');
+
+      if (state.hasQr) {
+        refreshQr();
+      } else {
+        qrImg.style.display = 'none';
+        qrSkel.style.display = (state.status === 'connected') ? 'none' : 'block';
+      }
+
+      if (state.status === 'connected') {
+        connectedPanel.classList.add('show');
+        phoneEl.textContent = state.phone ? '+' + state.phone : 'your number';
+      } else {
+        connectedPanel.classList.remove('show');
+      }
+    }
+
+    const es = new EventSource('/events');
+    es.onmessage = (ev) => {
+      try { apply(JSON.parse(ev.data)); } catch {}
+    };
+    es.onerror = () => { statusText.textContent = 'Reconnecting...'; };
+
+    logoutBtn.addEventListener('click', async () => {
+      logoutBtn.disabled = true;
+      logoutBtn.textContent = 'Unlinking...';
+      try {
+        await fetch('/logout', { method: 'POST' });
+      } catch {}
+      logoutBtn.disabled = false;
+      logoutBtn.textContent = 'Unlink this device';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "imisoro-bot",
+  "version": "0.1.0",
+  "description": "Imisoro Guide: a WhatsApp AI assistant that helps Rwandan businesses and accountants prepare for VAT filing on the official RRA eTax portal.",
+  "main": "connect-server.js",
+  "scripts": {
+    "start": "node --env-file=.env connect-server.js",
+    "seed": "node seed-kb.js",
+    "ask": "node --env-file=.env ask.js"
+  },
+  "keywords": ["whatsapp", "bot", "baileys", "rwanda", "vat", "tax", "etax", "rra", "imisoro"],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0-rc14",
+    "better-sqlite3": "^11.10.0",
+    "pino": "^10.3.1",
+    "qrcode": "^1.5.4"
+  }
+}
